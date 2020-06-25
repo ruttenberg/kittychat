@@ -8,7 +8,12 @@
     
     echo "Lucy logs in"
     Lucy_ID=`curl -s localhost:8080/login?name=lucy`
-    echo "URL-encoded ID for lucy is $Charlie_ID"
+    echo "URL-encoded ID for lucy is $Lucy_ID"
+    echo
+    
+    echo "Lucy finds out who is logged on"
+    Reply=`curl -s localhost:8080/who?id=$Lucy_ID`
+    echo "Server reply: $Reply"
     echo
     
     echo "Retrieving messages for Charlie"
@@ -32,6 +37,11 @@
     echo
 
     echo "Lucy gets her messages"
+    Reply=`curl -s localhost:8080/messages-for-me?id=$Lucy_ID`
+    echo "Server reply: $Reply"
+    echo
+    
+    echo "Lucy checks her messages again"
     Reply=`curl -s localhost:8080/messages-for-me?id=$Lucy_ID`
     echo "Server reply: $Reply"
     echo
